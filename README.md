@@ -36,7 +36,7 @@ Each file contains a representative workload,
 e.g., `qwen_traceB_blksz_16.jsonl` refer to a to-B trace collected at 2024.12.
 Each record contains the following information: 
 
-``` json
+``` jsonc
 {
   "chat_id": 159,                                   // Randomized chat identifier
   "parent_chat_id": 55,                             // -1 for root requests
