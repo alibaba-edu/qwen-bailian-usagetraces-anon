@@ -2,8 +2,8 @@
 
 ## Overview
 
-This dataset contains a two-hour anonymized KVCache trace of requests sent to a single
-Qwen model serving instance on **Aliyun Bailian**.
+This dataset contains a two-hour sampled anonymized KVCache trace of requests sent to a single
+Qwen model serving cluster on **Aliyun Bailian**.
 It is used for validating design techniques for LLM serving systems
 as well as inspiring future usage with the following
 key workload characteristics collected:
