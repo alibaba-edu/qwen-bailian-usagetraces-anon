@@ -1,5 +1,31 @@
 # Qwen-Bailian Anonymous Dataset
 
+This repository provides **anonymized, production-derived LLM usage traces**
+collected from a **Qwen model serving cluster on Aliyun Bailian**.
+The dataset is designed for **trace-driven evaluation of LLM serving systems**,
+including caching, batching, scheduling, and end-to-end inference optimization.
+
+The traces in this repository represent different usage scenarios:
+
+| **Scenario**       | **Description**                 | **Trace File**                                                   |
+| ------------------ | ------------------------------- | ---------------------------------------------------------------- |
+| **To-C Trace**     | Chat-style interactive services | [`qwen_traceA_blksz_16.jsonl`](./qwen_traceA_blksz_16.jsonl)     |
+| **To-B Trace**     | API-driven task automation      | [`qwen_traceB_blksz_16.jsonl`](./qwen_traceB_blksz_16.jsonl)     |
+| **Thinking Trace** | Reasoning-intensive chat        | [`qwen_thinking_blksz_16.jsonl`](./qwen_thinking_blksz_16.jsonl) |
+| **Coder Trace**    | Code generation                 | [`qwen_coder_blksz_16.jsonl`](./qwen_coder_blksz_16.jsonl)       |
+
+---
+
+## 🔥 What’s New
+
+- **New Thinking Trace**
+  Captures long-form reasoning workloads with **long output lengths**.
+- **New Coder Trace**
+  Represents code-generation and interactive programming workloads.
+- **Official Trace Replayer**
+  We open-sourced a **high-fidelity, timestamp-faithful trace replayer** for end-to-end benchmarking:  
+  👉 [https://github.com/blitz-serving/trace-replayer](https://github.com/blitz-serving/trace-replayer)
+
 ## Overview
 
 This dataset contains a two-hour sampled anonymized KVCache trace of requests sent to a single
@@ -23,12 +49,6 @@ key workload characteristics collected:
 For insights that can be drawn from the dataset,
 please refer to our works:
 - [Optimizing KVCache cache design. (KVCache@ATC'25)](https://arxiv.org/abs/2506.02634)
-
-## Scenarios behind the traces
-
-- To-C trace, e.g., ChatGPT-like service ([./qwen_traceA_blksz_16.jsonl](./qwen_traceA_blksz_16.jsonl)).
-- To-B trace, e.g., task automation with API calling ([./qwen_traceB_blksz_16.jsonl](./qwen_traceB_blksz_16.jsonl)).
-
 
 ## Data Specification of the Traces 
 
@@ -65,6 +85,25 @@ Each record contains the following information:
 
 4. **Time-based Anonymization**:
     - All timestamps are normalized to trace-relative values, starting from 0 at the beginning of each trace file. Original absolute timestamps (e.g., Unix time) are removed to prevent temporal correlation with external events or user behavior patterns.
+
+## Trace Replayer (Recommended)
+
+To enable **end-to-end, trace-driven benchmarking**, we provide an official
+open-source **Trace Replayer**:
+
+👉 [https://github.com/blitz-serving/trace-replayer](https://github.com/blitz-serving/trace-replayer)
+
+**Trace Replayer** is a **Rust-based, high-throughput replay engine** that:
+
+* Reconstructs **synthetic prompts** from input length + block hashes
+* Preserves **KVCache hit/miss patterns**
+* Replays requests against real backends (e.g., vLLM) via standard APIs
+* Records per-request latency, TTFT/TPOT (backend-dependent), and timing drift
+
+It can achieve **100+ QPS and 500K+ tokens/s** using **~30 CPU threads**,
+sufficient to stress-test **16–32 instance Qwen3-30B-A3B deployments**.
+
+Supported backends include **OpenAI-compatible APIs**, **TGI**, and **AIBrix**.
 
 ## Privacy & Compliance
 
