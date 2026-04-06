@@ -46,9 +46,10 @@ key workload characteristics collected:
 - **Structured Format**: JSON Lines with schema documentation
 - **Apache 2.0 Licensed**: Permissive open-source license for commercial use
 
-For insights that can be drawn from the dataset,
+For insights drawn from this dataset and techniques validated with it,
 please refer to our works:
 - [Optimizing KVCache cache design. (KVCache@ATC'25)](https://arxiv.org/abs/2506.02634)
+- [Simple yet effective LLM scheduling. (LMetric@OSDI'26)](https://arxiv.org/abs/2603.15202)
 
 ## Data Specification of the Traces 
 
