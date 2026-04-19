@@ -106,6 +106,10 @@ sufficient to stress-test **16–32 instance Qwen3-30B-A3B deployments**.
 
 Supported backends include **OpenAI-compatible APIs**, **TGI**, and **AIBrix**.
 
+## FAQ
+
+For common questions about trace patterns (e.g., missing tokens across turns, block hash mismatches), see [docs/qa-context-growth-pattern.md](./docs/qa-context-growth-pattern.md).
+
 ## Privacy & Compliance
 
 - **No PII**: All content hashed with irreversible cryptographic functions
