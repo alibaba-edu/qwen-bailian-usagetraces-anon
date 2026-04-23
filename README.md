@@ -109,6 +109,8 @@ Supported backends include **OpenAI-compatible APIs**, **TGI**, and **AIBrix**.
 ## FAQ
 
 For common questions about trace patterns (e.g., missing tokens across turns, block hash mismatches), see [docs/qa-context-growth-pattern.md](./docs/qa-context-growth-pattern.md).
+The released `hash_ids` are anonymized hashes of the actual token IDs consumed by the inference engine after the model-specific `chat_template` has already been applied.
+Do not apply `chat_template` again when using these traces.
 
 ## Privacy & Compliance
 
